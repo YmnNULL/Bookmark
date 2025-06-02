@@ -36,23 +36,31 @@ function clearForm(){
 
 function checkValueInName() {
   let flage = false;
-  if (inputName.value.length <= 3) {
-    inputName.classList.add("not-valid");
+  if (inputName.value.trim().length < 3) {
+    inputName.classList.add("is-invalid");
+    inputName.nextElementSibling.classList.remove("d-none");
   } else {
-    inputName.classList.remove("not-valid");
-    inputName.classList.add("valid");
+    inputName.classList.remove("is-invalid");
+    inputName.classList.add("is-valid");
+    inputName.nextElementSibling.classList.add("d-none");
+    inputName.nextElementSibling.classList.remove("d-block");
     flage = true;
   }
   return flage;
 }
 
+const regex = /^(https:\/\/|http:\/\/).*\.(com|edu|org|net)(\/.*)?$/;
+
 function checkValueInUrl() {
   let flage = false;
-  if (!inputUrl.value.endsWith(".com")) {
-    inputUrl.classList.add("not-valid");
+  if (!regex.test(inputUrl.value)) {
+    inputUrl.classList.add("is-invalid");
+    inputUrl.nextElementSibling.classList.remove("d-none");
   } else {
-    inputUrl.classList.remove("not-valid");
-    inputUrl.classList.add("valid");
+    inputUrl.classList.remove("is-invalid");
+    inputUrl.classList.add("is-valid");
+    inputUrl.nextElementSibling.classList.add("d-none");
+    inputUrl.nextElementSibling.classList.remove("d-block");
     flage = true;
   }
   return flage;
@@ -61,6 +69,8 @@ function checkValueInUrl() {
 submit.addEventListener("click", function () {
   if (checkValueInUrl() && checkValueInName()) {
     addBooks();
+    inputUrl.classList.remove("is-valid");
+    inputName.classList.remove("is-valid");
   } else {
     erorrWindow.classList.remove("d-none");
   }
@@ -98,9 +108,6 @@ function showBooks() {
     visitButtons.forEach(btn => {
         btn.addEventListener('click', function () {
             let url = this.getAttribute('data-url');
-            if (!url.startsWith('http')) {
-                url = 'https://' + url;
-            }
             window.open(url, '_blank');
         });
     });

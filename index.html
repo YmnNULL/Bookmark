@@ -72,6 +72,9 @@
                     </label>
                     <input type="text" placeholder="Bookmark Name" class="form-control" id="bookmarkName"
                         oninput="checkValueInName()">
+                    <div class="alert alert-danger p-2 px-3 mt-3 mb-0 d-none" role="alert">
+                        Please enter a valid name for the bookmark, it must contain at least 3 characters.
+                    </div>
                 </div>
 
                 <div class="w-100 d-flex flex-column justify-content-center">
@@ -81,6 +84,16 @@
                     </label>
                     <input type="url" placeholder="Website URL" class="form-control" id="bookmarkURL"
                         oninput="checkValueInUrl()">
+                    <div class="alert alert-danger p-2 px-3 mt-3 mb-0 d-none" role="alert">
+                        Please enter a valid URL for the bookmark, it must start with
+                        <span class="fw-bolder"> http:// </span> Or
+                        <span class="fw-bolder"> https:// </span> and End with
+                        <span class="fw-bolder"> .com </span> ,
+                        <span class="fw-bolder"> .net </span> ,
+                        <span class="fw-bolder"> .org </span> or
+                        <span class="fw-bolder"> .edu </span>
+
+                    </div>
                 </div>
 
                 <button id="btnSubmit" class="btn btn-danger px-4 px-md-5">Submit</button>
